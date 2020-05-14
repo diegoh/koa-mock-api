@@ -1,5 +1,7 @@
 FROM node:14-alpine
 
+USER node
+
 RUN mkdir /opt/app
 
 WORKDIR /opt/app
