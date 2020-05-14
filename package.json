@@ -1,0 +1,44 @@
+{
+  "name": "@diegoh/koa-mock-api",
+  "version": "1.0.0",
+  "description": "A koa app that returns example requests to test healthchecks, timeouts and error responses",
+  "main": "src/index.ts",
+  "type": "module",
+  "prettier": "@diegoh/eslint-config-prettier-typescript-node/src/prettier.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "lint": "eslint **/*.ts",
+    "lint:fix": "eslint **/*.ts --fix",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoh/koa-mock-api.git"
+  },
+  "author": "Diego Herrera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diegoh/koa-mock-api/issues"
+  },
+  "homepage": "https://github.com/diegoh/koa-mock-api#readme",
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-logger": "^3.2.1"
+  },
+  "devDependencies": {
+    "@diegoh/eslint-config-prettier-typescript-node": "^1.1.0",
+    "@diegoh/tsconfig": "^1.0.5",
+    "@types/koa-logger": "^3.1.1",
+    "@types/node": "^13.13.5",
+    "eslint": "^6.8.0",
+    "prettier": "^2.0.5",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  },
+  "keywords": [
+    "node",
+    "koa",
+    "docker",
+    "mock-api"
+  ]
+}
