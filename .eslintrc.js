@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@diegoh/eslint-config-prettier-typescript-node']
-};
+  extends: ["@diegoh/eslint-config-prettier-typescript-node"]
+}
