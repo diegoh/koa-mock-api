@@ -1,4 +1,4 @@
-name: npm
+name: Publish Public Docker Image to DockerHub
 
 on:
   push:
@@ -26,11 +26,6 @@ jobs:
 
       - name: dependencies
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: publish npm
-        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
