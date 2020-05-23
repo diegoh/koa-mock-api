@@ -7,6 +7,6 @@ describe('src/delay-request', () => {
     const delay = 1000;
     delayRequest(delay);
     expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenCalledWith(null, delay);
+    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), delay);
   });
 });

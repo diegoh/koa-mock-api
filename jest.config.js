@@ -3,6 +3,6 @@ module.exports = {
   testEnvironment: 'node',
   resetMocks: true,
   logHeapUsage: true,
-  testTimeout: 1000,
+  testTimeout: 10000,
   coverageDirectory: 'misc/.coverage'
 };

@@ -1,12 +1,6 @@
-import * as Koa from 'koa';
-import * as logger from 'koa-logger';
-import { handler } from './handler';
+import app from './app';
 
-const app = new Koa();
-const port = 8081;
-
-app.use(logger());
-app.use(handler);
+const port = process.env.PORT || 8081;
 
 // eslint-disable-next-line no-console
 console.log(

@@ -1,5 +1,5 @@
 export const delayRequest = async (delay: number): Promise<void> => {
-  await new Promise(() => {
-    setTimeout(null, delay);
+  await new Promise((resolve) => {
+    setTimeout(resolve, delay);
   });
 };

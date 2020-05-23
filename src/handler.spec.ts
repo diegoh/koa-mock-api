@@ -40,6 +40,18 @@ describe('src/handler', () => {
 
     expect.assertions(1);
   });
+  it('does not throw an error', async () => {
+    const ctx = createMockContext();
+    ctx.request.query.error = true;
+
+    try {
+      await handler(ctx, next);
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
+
+    expect.assertions(1);
+  });
   it('delays a request', async () => {
     const ctx = createMockContext();
     const delay = 10000;

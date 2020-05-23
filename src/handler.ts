@@ -13,12 +13,13 @@ export const handler: Middleware = async (
   next: Next
 ): Promise<void> => {
   const { delay, error } = ctx.request.query;
+  const shouldThrow = error === true || error === 'true';
 
   if (delay) {
     await delayRequest(delay);
   }
 
-  if (error) {
+  if (shouldThrow) {
     throw new Error();
   }
 
