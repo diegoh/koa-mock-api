@@ -34,5 +34,5 @@ jobs:
       - name: Archive Coverage Results
         uses: actions/upload-artifact@v1
         with:
-          name: dist/coverage
+          name: coverage
           path: dist/coverage
