@@ -8,7 +8,6 @@ on:
 jobs:
   npm-public:
     runs-on: ubuntu-latest
-
     container:
       image: node:14.3.0-alpine
 
@@ -32,6 +31,10 @@ jobs:
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
             ${{ runner.os }}-node-${{ env.cache-name }}-
             ${{ runner.os }}-node-
+            ${{ runner.os }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
             ${{ runner.os }}-
 
       - name: dependencies
