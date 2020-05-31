@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ./actions/run-in-docker.yml
+      - uses: ./github/actions/run-in-docker.yml
 
       - name: dependencies
         run: npm ci
