@@ -35,7 +35,7 @@ jobs:
         run: npm run lint
 
       - name: audit
-        run: npm run audit
+        run: npm audit
 
       - name: test:coverage
         run: npm run test:coverage
