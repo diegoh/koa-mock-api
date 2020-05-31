@@ -1,8 +1,11 @@
 FROM node:14.2.0-alpine as BUILDER
+ARG DEV_BUILD="false"
 COPY . .
 RUN npm ci
 RUN npm run build
-RUN npm prune --production
+RUN if [ "$DEV_BUILD" = "true" ]; then npm prune --production ; fi
+
+
 
 FROM node:14.2.0-alpine
 ENV NODE_ENV=production

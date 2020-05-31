@@ -1,0 +1,8 @@
+# action.yml
+name: 'Run in Docker'
+description: 'runs the build inside a docker container'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - DEV_BUILD=true
