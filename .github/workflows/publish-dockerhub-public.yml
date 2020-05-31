@@ -2,10 +2,8 @@ name: Publish Public Docker Image to DockerHub
 
 on:
   push:
-    # branches:
-    #   - master
-    branches-ignore:
-      - 'master'
+    branches:
+      - master
 
 jobs:
   dockerhub:
