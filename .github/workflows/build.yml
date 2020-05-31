@@ -30,3 +30,9 @@ jobs:
 
       - name: test:integration
         run: npm run test:integration
+
+      - name: Archive Coverage Results
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist/coverage
+          path: dist/coverage
