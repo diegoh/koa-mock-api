@@ -9,10 +9,11 @@
     "dev": "ts-node-dev src/index.ts",
     "lint": "eslint **/*.ts",
     "lint:fix": "eslint **/*.ts --fix",
-    "test:unit": "NODE_ENV=test jest --testPathPattern src",
+    "test:unit": "jest --testPathPattern src",
     "test:coverage": "npm run test:unit -- --coverage",
     "test:integration": "NODE_ENV=test jest --testPathPattern 'test'",
-    "build": "tsc"
+    "build": "tsc",
+    "swagger": "openapi-editor --file ./swagger.yaml --port 11111"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
     "jest": "^25.5.4",
+    "openapi-editor": "^0.2.0",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2",
     "ts-jest": "^25.5.0",
