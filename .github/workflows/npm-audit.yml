@@ -1,0 +1,19 @@
+name: npm-audit
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+
+    container:
+      image: node:14.3.0-alpine
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: audit
+        run: npm audit --registry=https://registry.npmjs.org

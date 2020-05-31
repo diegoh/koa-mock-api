@@ -1,4 +1,4 @@
-name: Publish Public NPM Package
+name: npm-publish-public
 
 on:
   push:
@@ -6,23 +6,32 @@ on:
       - master
 
 jobs:
-  npm:
+  npm-publish-public:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14]
+    container:
+      image: node:14.3.0-alpine
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
           scope: '@diegoh'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - name: dependencies
         run: npm ci

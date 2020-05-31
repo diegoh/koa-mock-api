@@ -1,4 +1,4 @@
-name: Publish Public Docker Image to DockerHub
+name: dockerhub-publish
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  dockerhub:
+  dockerhub-publish-public:
     runs-on: ubuntu-latest
 
     steps:

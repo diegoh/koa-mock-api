@@ -1,13 +1,12 @@
-FROM node:14.2.0-alpine as BUILDER
-ARG DEV_BUILD="false"
+FROM node:14.3.0-alpine as BUILDER
 COPY . .
 RUN npm ci
 RUN npm run build
-RUN if [ "$DEV_BUILD" = "true" ]; then npm prune --production ; fi
+RUN npm prune --production
 
 
 
-FROM node:14.2.0-alpine
+FROM node:14.3.0-alpine
 ENV NODE_ENV=production
 RUN mkdir /opt/app
 WORKDIR /opt/app
