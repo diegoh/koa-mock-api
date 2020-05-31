@@ -1,4 +1,4 @@
-name: test
+name: build
 
 on:
   push:
@@ -6,7 +6,18 @@ on:
       - 'master'
 
 jobs:
-  unit:
+  audit:
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.3.0-alpine
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: audit
+        run: npm run audit
+
+  build:
     runs-on: ubuntu-latest
 
     container:
@@ -29,33 +40,12 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: lint
+        run: npm run lint
 
       - name: test:coverage
         run: npm run test:coverage
-
-  integration:
-    runs-on: ubuntu-latest
-
-    container:
-      image: node:14.3.0-alpine
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: test:integration
         run: npm run test:integration
