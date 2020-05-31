@@ -1,3 +1,4 @@
+import { OK } from 'http-status-codes';
 import {
   DefaultContext,
   DefaultState,
@@ -5,27 +6,23 @@ import {
   Next,
   ParameterizedContext
 } from 'koa';
-
-const delayRequest = async (delay: number): Promise<void> => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-};
+import { delayRequest } from './delay-request';
 
 export const handler: Middleware = async (
   ctx: ParameterizedContext<DefaultState, DefaultContext>,
   next: Next
 ): Promise<void> => {
   const { delay, error } = ctx.request.query;
+  const shouldThrow = error === true || error === 'true';
 
   if (delay) {
     await delayRequest(delay);
   }
 
-  if (error) {
+  if (shouldThrow) {
     throw new Error();
   }
 
-  ctx.status = 200;
+  ctx.status = OK;
   await next();
 };

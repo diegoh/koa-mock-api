@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  description: 'A koa API that returns example requests to test healthchecks, timeouts and error responses'
+  version: '1.0.0'
+  title: '@diegoh/koa-mock-api'
+  license:
+    name: 'MIT'
+    url: 'https://github.com/diegoh/koa-mock-api/blob/master/LICENSE'
+paths:
+  /:
+    get:
+      parameters:
+        - in: 'query'
+          name: 'delay'
+          required: false
+          schema:
+            $ref: '#/components/schemas/delay'
+        - in: 'query'
+          name: 'error'
+          description: 'Responds with an error'
+          schema:
+            $ref: '#/components/schemas/error'
+      responses:
+        '200':
+          description: 'OK'
+        '500':
+          description: 'OK'
+components:
+  schemas:
+    delay:
+      description: 'Time to delay the request in miliseconds'
+      type: integer
+    error:
+      description: 'Whether the response should be an error response (500)'
+      type: boolean

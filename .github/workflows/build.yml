@@ -1,43 +1,32 @@
-name: npm
+name: build
 
 on:
   push:
-    branches:
-      - master
+    branches-ignore:
+      - 'master'
 
 jobs:
-  npm:
+  build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14]
+    container:
+      image: node:14.3.0-alpine
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@diegoh'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v2
 
       - name: dependencies
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: publish npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: lint
+        run: npm run lint
 
-      - name: publish docker
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ DOCKER_USERNAME }}
-          password: ${{ DOCKER_PASSWORD }}
-          repository: diegoh/koa-mock-api
-          tags: v1
+      - name: audit
+        run: npm audit
+
+      - name: test:coverage
+        run: npm run test:coverage
+
+      - name: test:integration
+        run: npm run test:integration

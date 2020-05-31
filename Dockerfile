@@ -1,15 +1,16 @@
-FROM node:14-alpine
+FROM node:14.3.0-alpine as BUILDER
+COPY . .
+RUN npm ci
+RUN npm run build
+RUN npm prune --production
 
-USER node
-
+FROM node:14.3.0-alpine
+ENV NODE_ENV=production
 RUN mkdir /opt/app
-
 WORKDIR /opt/app
-
-COPY . /opt/app
-
-RUN npm install
-
+COPY --from=BUILDER package.json .
+COPY --from=BUILDER dist/  ./dist
+COPY --from=BUILDER node_modules/  ./node_modules
 EXPOSE 8081
-
+USER node
 CMD npm run start
