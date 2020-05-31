@@ -4,8 +4,6 @@ RUN npm ci
 RUN npm run build
 RUN npm prune --production
 
-
-
 FROM node:14.3.0-alpine
 ENV NODE_ENV=production
 RUN mkdir /opt/app
