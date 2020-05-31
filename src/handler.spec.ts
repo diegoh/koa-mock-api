@@ -44,7 +44,7 @@ describe('src/handler', () => {
 
   it('delays a request', async () => {
     const delay = 10000;
-    console.log(ctx.request.query);
+
     ctx.request.query.delay = delay;
 
     await handler(ctx, next);
