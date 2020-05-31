@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: coverage
-          path: dist/coverage
+          path: misc/coverage
